@@ -16,7 +16,7 @@ import time
 import math
 import sys
 
-filePATH = r"C:/Users/marcjoiret/Desktop/MARC/TISSUE ENGINEERING and REGENERATIVE MEDICINE/DEEP LEARNING/Project/DATA/"
+filePATH = r"./DATA/"
 fileOne = r"humanORFs.txt"
 fileTwo = r"humanProteins.txt"
 cdsIDmRNA, ORFs, cdsIDprot, proteins = loadData(filePATH+fileOne, filePATH+fileTwo)
@@ -31,7 +31,7 @@ cdsIDmRNA, ORFs, cdsIDprot, proteins = loadData(filePATH+fileOne, filePATH+fileT
 # The outcome is a multinomial outcome: given a triplet of nucleotides, you implicitly assign a target value taken from a set
 # of 21 amino acid residues (STOP * included).
 
-root_dir = r"C:/Users/marcjoiret/Desktop/MARC/TISSUE ENGINEERING and REGENERATIVE MEDICINE/DEEP LEARNING/Project/DATA/"
+root_dir = r"./DATA/"
 target_file = r"targets.txt"
 created_target_file = open(root_dir + target_file, 'w')
 
@@ -295,7 +295,7 @@ class MLP(nn.Sequential): # Multilayer Perceptron Network
 network = MLP(input_features, output_features, hidden_features_layer1, hidden_features_layer2)
 # network is the instantiated mlp from the class MLP:
 # transfer MLP network to GPU, just once
-device = 'cuda'
+device = 'cpu'
 network.to(device)
 
 # loss function:
@@ -371,7 +371,7 @@ def train(num_epochs):
                     for row in range(pred.size()[1]):  # for each of the  21 target amino acids
                         #print('pred.size()', pred.size())
                         #print('pred[batch_codon]', pred[batch_codon])
-                        print('probability', pred[batch_codon, row])
+                        # print('probability', pred[batch_codon, row])
                         genetic_code_array[row][col] = pred[batch_codon, row]
                 # update and save heatmap:
                 updateANDsave_heatmap(i, batch_iter, sampling_dist, genetic_code_array,
@@ -407,7 +407,7 @@ def train(num_epochs):
                 batch_accuracy = matches.sum()
                 correct += matches.sum()
                 #correct += (y_pred.squeeze(1) == y.squeeze(1)).sum()
-                print('correct test accum of this batch =', batch_accuracy/batch_size_of_codons)
+                # print('correct test accum of this batch =', batch_accuracy/batch_size_of_codons)
 
             test_accuracy = correct / len(test_codon_set)
 
@@ -477,12 +477,12 @@ axs[3].set_ylim(0.0, 1.0)
 #plt.savefig(r"C:\Users\marcjoiret\Desktop\MARC\TISSUE ENGINEERING and REGENERATIVE MEDICINE\DEEP LEARNING\Project\FIG\MLP_40iter64bitsWeights.svg")
 #plt.savefig(r"C:\Users\marcjoiret\Desktop\MARC\TISSUE ENGINEERING and REGENERATIVE MEDICINE\DEEP LEARNING\Project\FIG\MLP_40iter64bitsWeights.pdf")
 
-plt.savefig(r"C:\Users\marcjoiret\Desktop\MARC\TISSUE ENGINEERING and REGENERATIVE MEDICINE\DEEP LEARNING\Project\FIG\MLP_40iter64bits1024weights.svg")
-plt.savefig(r"C:\Users\marcjoiret\Desktop\MARC\TISSUE ENGINEERING and REGENERATIVE MEDICINE\DEEP LEARNING\Project\FIG\MLP_40iter64bits1024weights.pdf")
+plt.savefig(r"./FIGS/MLP_40iter64bits1024weights.svg")
+plt.savefig(r"./FIGS/MLP_40iter64bits1024weights.pdf")
 
 # This produce a file saving the losses and train + test accuracies for each iteration
 #-------------------------------------------------------------------------------------
-filePATH = r"C:/Users/marcjoiret/Desktop/MARC/TISSUE ENGINEERING and REGENERATIVE MEDICINE/DEEP LEARNING/Project/FIG/MLP64bits1024weights/"
+filePATH = r"./FIGS/"
 ThisFileName = "MLP64bitsLayer1024weights.txt"
 scoresfile = open(filePATH+ThisFileName, 'w')
 headerline = 'MLP OHE 64 bits Hidden Layer 1024 with 40 epochs with adjustment for classes weights.\n'

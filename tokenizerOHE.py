@@ -33,7 +33,7 @@ def loadData(input_filename, target_filename):
     return cds_id_mRNA_list, transcript_sequences_list, cds_id_prot_list, protein_sequences_list
 
 #filePATH = r'C:\Users\marcjoiret\Desktop\MARC\TISSUE ENGINEERING and REGENERATIVE MEDICINE\DEEP LEARNING\Project\DATA\'
-filePATH = r"C:/Users/marcjoiret/Desktop/MARC/TISSUE ENGINEERING and REGENERATIVE MEDICINE/DEEP LEARNING/Project/DATA/"
+filePATH = r"./DATA/"
 fileOne = r"humanORFs.txt"
 fileTwo = r"humanProteins.txt"
 cdsIDmRNA, ORFs, cdsIDprot, proteins = loadData(filePATH+fileOne, filePATH+fileTwo)
@@ -284,7 +284,7 @@ def updateANDsave_heatmap(this_epoch, this_batch_ID, sampling_D, this_table, thi
     #figurePATH = r"C:/Users/marcjoiret/Desktop/MARC/TISSUE ENGINEERING and REGENERATIVE MEDICINE/DEEP LEARNING/Project/FIG/MLPembeddings64to10relu_40epByFreqTrue/pdf/"
     #figurePATH = r"C:/Users/marcjoiret/Desktop/MARC/TISSUE ENGINEERING and REGENERATIVE MEDICINE/DEEP LEARNING/Project/FIG/RNN2layersWEIGHTS/pdf/"
     #figurePATH = r"C:/Users/marcjoiret/Desktop/MARC/TISSUE ENGINEERING and REGENERATIVE MEDICINE/DEEP LEARNING/Project/FIG/RNN2layers512/pdf/"
-    figurePATH = r"C:/Users/marcjoiret/Desktop/MARC/TISSUE ENGINEERING and REGENERATIVE MEDICINE/DEEP LEARNING/Project/FIG/RNN2layers256weights/pdf/"
+    figurePATH = r"./FIGS/"
 
     plt.savefig(
         figurePATH+figNamePDF)
@@ -294,7 +294,7 @@ def updateANDsave_heatmap(this_epoch, this_batch_ID, sampling_D, this_table, thi
     #figurePATH = r"C:/Users/marcjoiret/Desktop/MARC/TISSUE ENGINEERING and REGENERATIVE MEDICINE/DEEP LEARNING/Project/FIG/MLPembeddings64to10relu_40epByFreqTrue/svg/"
     #figurePATH = r"C:/Users/marcjoiret/Desktop/MARC/TISSUE ENGINEERING and REGENERATIVE MEDICINE/DEEP LEARNING/Project/FIG/RNN2layersWEIGHTS/svg/"
     #figurePATH = r"C:/Users/marcjoiret/Desktop/MARC/TISSUE ENGINEERING and REGENERATIVE MEDICINE/DEEP LEARNING/Project/FIG/RNN2layers512/svg/"
-    figurePATH = r"C:/Users/marcjoiret/Desktop/MARC/TISSUE ENGINEERING and REGENERATIVE MEDICINE/DEEP LEARNING/Project/FIG/RNN2layers256weights/svg/"
+    figurePATH = r"./FIGS/"
 
     plt.savefig(
         figurePATH+figNameSVG)
