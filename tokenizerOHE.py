@@ -219,10 +219,10 @@ def updateANDsave_heatmap(this_epoch, this_batch_ID, sampling_D, this_table, thi
     batch_num=str(int(this_batch_ID/sampling_D))
     if str(fig_num[0])==' ':
         fig_num = str('0')+fig_num[1]
-    figNamePDF = "heatmapCode"+fig_num+batch_num+".pdf"
-    figNameSVG = "heatmapCode"+fig_num+batch_num+".svg"
-    print(figNamePDF)
-    print(figNameSVG)
+    figNamePNG = "heatmapCode"+fig_num+batch_num+".png"
+    # figNameSVG = "heatmapCode"+fig_num+batch_num+".svg"
+    print(figNamePNG)
+    # print(figNameSVG)
     # create the heatmap with the 2D data: columns = codonList, rows= amino acid list.
     # Each column comes from the last updated probability distribution for the 21 targets amino acid to be mapped by a given codon
     # get the codons and their index from last batch of 64 codons in tensor x[64, 1, 64] for current epoch --> indices in codonList
@@ -268,7 +268,7 @@ def updateANDsave_heatmap(this_epoch, this_batch_ID, sampling_D, this_table, thi
     # set title and suptitle:
     txt_caption = 'EPOCH = '+str(format(this_epoch, '2d'))+'.BATCH = '+str(format(this_batch_ID, '4d')) + ' ELAPSED TIME = '+ str(format(this_time, '3.1f'))+ str(' min. ') +\
                             str(format(int(Ncod), '8d'))+ str(' PAIRS PRESENTED. ') + ' TRAIN. ACCURACY = '+str(format(last_training_accuracy, '4.2%'))
-    ax.set_title(x=0.50, y=0.90, label=txt_caption, fontsize=16)
+    ax.set_title(label=txt_caption, fontsize=16)
     #{'fontsize':22, 'fontweight':'bold'})
     # rotate the codon names by 45 degrees:
     plt.xticks(rotation = 45)
@@ -286,8 +286,7 @@ def updateANDsave_heatmap(this_epoch, this_batch_ID, sampling_D, this_table, thi
     #figurePATH = r"C:/Users/marcjoiret/Desktop/MARC/TISSUE ENGINEERING and REGENERATIVE MEDICINE/DEEP LEARNING/Project/FIG/RNN2layers512/pdf/"
     figurePATH = r"./FIGS/"
 
-    plt.savefig(
-        figurePATH+figNamePDF)
+    plt.savefig(figurePATH+figNamePNG)
     #figurePATH = r"C:/Users/marcjoiret/Desktop/MARC/TISSUE ENGINEERING and REGENERATIVE MEDICINE/DEEP LEARNING/Project/FIG/MLP/svg/"
     #figurePATH = r"C:/Users/marcjoiret/Desktop/MARC/TISSUE ENGINEERING and REGENERATIVE MEDICINE/DEEP LEARNING/Project/FIG/MLP64bits/svg/"
     #figurePATH = r"C:/Users/marcjoiret/Desktop/MARC/TISSUE ENGINEERING and REGENERATIVE MEDICINE/DEEP LEARNING/Project/FIG/MLP12bitsOHEweights/svg/"
@@ -296,7 +295,7 @@ def updateANDsave_heatmap(this_epoch, this_batch_ID, sampling_D, this_table, thi
     #figurePATH = r"C:/Users/marcjoiret/Desktop/MARC/TISSUE ENGINEERING and REGENERATIVE MEDICINE/DEEP LEARNING/Project/FIG/RNN2layers512/svg/"
     figurePATH = r"./FIGS/"
 
-    plt.savefig(
-        figurePATH+figNameSVG)
+    # plt.savefig(
+        # figurePATH+figNameSVG)
 
 #sys.exit()
