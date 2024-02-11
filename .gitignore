@@ -1,6 +1,6 @@
-test*
 FIGS/
 targets.txt
+log*
 # Etc
 *.zip
 *.csv

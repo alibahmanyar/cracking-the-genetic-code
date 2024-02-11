@@ -33,7 +33,7 @@ def loadData(input_filename, target_filename):
     return cds_id_mRNA_list, transcript_sequences_list, cds_id_prot_list, protein_sequences_list
 
 #filePATH = r'C:\Users\marcjoiret\Desktop\MARC\TISSUE ENGINEERING and REGENERATIVE MEDICINE\DEEP LEARNING\Project\DATA\'
-filePATH = r"./DATA/"
+filePATH = r"../DATA/"
 fileOne = r"humanORFs.txt"
 fileTwo = r"humanProteins.txt"
 cdsIDmRNA, ORFs, cdsIDprot, proteins = loadData(filePATH+fileOne, filePATH+fileTwo)
