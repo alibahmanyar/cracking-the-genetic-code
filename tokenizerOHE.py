@@ -209,7 +209,7 @@ def tensor3x4_to_codon(t3x4, alphabet):
 # correctly annotating the file (captioning):
 # The fucntion is called upon from the neural network training loop
 
-def updateANDsave_heatmap(this_epoch, this_batch_ID, sampling_D, this_table, this_time, Ncod, last_training_accuracy):
+def updateANDsave_heatmap(this_epoch, this_batch_ID, sampling_D, this_table, this_time, Ncod, last_training_accuracy, figurePATH="./FIGS/", txt_label=""):
     # training heatmap
     # plot dynamically the heatmap of the predicted genetic code with color bar representing the probability that a codon maps
     # the target amino acid:
@@ -273,7 +273,7 @@ def updateANDsave_heatmap(this_epoch, this_batch_ID, sampling_D, this_table, thi
     # rotate the codon names by 45 degrees:
     plt.xticks(rotation = 45)
     plt.yticks(rotation = 0)
-    txt_label = "Genetic Code Deciphering with a RNN 2 layers hidden size 256, adjusting for weights."
+    # txt_label = "Genetic Code Deciphering with a RNN 2 layers hidden size 256, adjusting for weights."
     plt.text(x=0.10, y=0.90, s= txt_label, fontsize=24, ha="left", transform=fig.transFigure)
 
     #plt.show()
@@ -284,7 +284,7 @@ def updateANDsave_heatmap(this_epoch, this_batch_ID, sampling_D, this_table, thi
     #figurePATH = r"C:/Users/marcjoiret/Desktop/MARC/TISSUE ENGINEERING and REGENERATIVE MEDICINE/DEEP LEARNING/Project/FIG/MLPembeddings64to10relu_40epByFreqTrue/pdf/"
     #figurePATH = r"C:/Users/marcjoiret/Desktop/MARC/TISSUE ENGINEERING and REGENERATIVE MEDICINE/DEEP LEARNING/Project/FIG/RNN2layersWEIGHTS/pdf/"
     #figurePATH = r"C:/Users/marcjoiret/Desktop/MARC/TISSUE ENGINEERING and REGENERATIVE MEDICINE/DEEP LEARNING/Project/FIG/RNN2layers512/pdf/"
-    figurePATH = r"./FIGS/"
+    # figurePATH = r"./FIGS/"
 
     plt.savefig(figurePATH+figNamePNG)
     #figurePATH = r"C:/Users/marcjoiret/Desktop/MARC/TISSUE ENGINEERING and REGENERATIVE MEDICINE/DEEP LEARNING/Project/FIG/MLP/svg/"
@@ -293,7 +293,7 @@ def updateANDsave_heatmap(this_epoch, this_batch_ID, sampling_D, this_table, thi
     #figurePATH = r"C:/Users/marcjoiret/Desktop/MARC/TISSUE ENGINEERING and REGENERATIVE MEDICINE/DEEP LEARNING/Project/FIG/MLPembeddings64to10relu_40epByFreqTrue/svg/"
     #figurePATH = r"C:/Users/marcjoiret/Desktop/MARC/TISSUE ENGINEERING and REGENERATIVE MEDICINE/DEEP LEARNING/Project/FIG/RNN2layersWEIGHTS/svg/"
     #figurePATH = r"C:/Users/marcjoiret/Desktop/MARC/TISSUE ENGINEERING and REGENERATIVE MEDICINE/DEEP LEARNING/Project/FIG/RNN2layers512/svg/"
-    figurePATH = r"./FIGS/"
+    # figurePATH = r"./FIGS/"
 
     # plt.savefig(
         # figurePATH+figNameSVG)

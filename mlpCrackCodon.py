@@ -16,6 +16,12 @@ import time
 import math
 import sys
 
+FIG_LABEL = "./FIGS/"
+FIGS_PATH = "MLP 2 layers hidden size 512 with 40 epochs"
+
+from pathlib import Path
+Path(FIGS_PATH).mkdir(parents=True, exist_ok=True)
+
 filePATH = r"./DATA/"
 fileOne = r"humanORFs.txt"
 fileTwo = r"humanProteins.txt"
@@ -375,7 +381,7 @@ def train(num_epochs):
                         genetic_code_array[row][col] = pred[batch_codon, row]
                 # update and save heatmap:
                 updateANDsave_heatmap(i, batch_iter, sampling_dist, genetic_code_array,
-                                      deltaTime, nb_codons_presented, training_accuracy)
+                                      deltaTime, nb_codons_presented, training_accuracy, FIGS_PATH, FIG_LABEL)
             # backprop with automatic differentiation:
             optimizer.zero_grad()
             loss.backward()

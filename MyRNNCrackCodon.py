@@ -16,7 +16,14 @@ import time
 import math
 import sys
 
-filePATH = r"C:/Users/marcjoiret/Desktop/MARC/TISSUE ENGINEERING and REGENERATIVE MEDICINE/DEEP LEARNING/Project/DATA/"
+FIG_LABEL = "./FIGS"
+FIGS_PATH = "RNN 2 layers hidden size 512 with 40 epochs"
+
+from pathlib import Path
+Path(FIGS_PATH).mkdir(parents=True, exist_ok=True)
+
+
+filePATH = r"./DATA/"
 fileOne = r"humanORFs.txt"
 fileTwo = r"humanProteins.txt"
 cdsIDmRNA, ORFs, cdsIDprot, proteins = loadData(filePATH+fileOne, filePATH+fileTwo)
@@ -31,7 +38,7 @@ cdsIDmRNA, ORFs, cdsIDprot, proteins = loadData(filePATH+fileOne, filePATH+fileT
 # The outcome is a multinomial outcome: given a triplet of nucleotides, you implicitly assign a target value taken from a set
 # of 21 amino acid residues (STOP * included).
 
-root_dir = r"C:/Users/marcjoiret/Desktop/MARC/TISSUE ENGINEERING and REGENERATIVE MEDICINE/DEEP LEARNING/Project/DATA/"
+root_dir = r"./DATA/"
 target_file = r"targets.txt"
 created_target_file = open(root_dir + target_file, 'w')
 
@@ -349,8 +356,8 @@ network = RNN(N_nucleotides, n_hidden, num_layers, N_aminoAcids)
 
 # network is the instantiated rnn or gru or lstm from the class RNN:
 # transfer RNN/GRU/LSTM network to GPU, just once
-device = 'cuda'
-#device = 'cpu'
+# device = 'cuda'
+device = 'cpu'
 network.to(device)
 
 # loss function:
@@ -445,7 +452,7 @@ def train(num_epochs):
                         genetic_code_array[row][col] = pred[batch_codon, row]
                 # update and save heatmap:
                 updateANDsave_heatmap(i, batch_iter, sampling_dist, genetic_code_array,
-                                      deltaTime, nb_codons_presented, training_accuracy)
+                                      deltaTime, nb_codons_presented, training_accuracy, FIGS_PATH, FIG_LABEL)
             # backprop with automatic differentiation:
             optimizer.zero_grad()
             loss.backward()
@@ -554,8 +561,8 @@ axs[3].set_ylim(0.0, 1.0)
 #plt.tight_layout()
 #plt.show()
 #save figure:
-plt.savefig(r"C:\Users\marcjoiret\Desktop\MARC\TISSUE ENGINEERING and REGENERATIVE MEDICINE\DEEP LEARNING\Project\FIG\RNN2hiddenlayers40ep256weights.svg")
-plt.savefig(r"C:\Users\marcjoiret\Desktop\MARC\TISSUE ENGINEERING and REGENERATIVE MEDICINE\DEEP LEARNING\Project\FIG\RNN2hiddenlayers40ep256weights.pdf")
+plt.savefig(r"./FIGS/RNN2hiddenlayers40ep256weights.svg")
+plt.savefig(r"./FIGS/RNN2hiddenlayers40ep256weights.pdf")
 
 print('number of epochs = ', num_epochs)
 print('elapsed time at each epoch in seconds', elapsed_time_at_epoch)
@@ -565,7 +572,7 @@ print('test accuracy at each epoch', test_accuracy_list)
 
 # This produce a file saving the losses and train + test accuracies for each iteration
 #-------------------------------------------------------------------------------------
-filePATH = r"C:/Users/marcjoiret/Desktop/MARC/TISSUE ENGINEERING and REGENERATIVE MEDICINE/DEEP LEARNING/Project/FIG/"
+filePATH = r"./FIGS/"
 ThisFileName = "RNN2layers256_40epFreqTRue.txt"
 scoresfile = open(filePATH+ThisFileName, 'w')
 headerline = 'RNN 2 layers hidden size 256 adjusting for weights.\n'
